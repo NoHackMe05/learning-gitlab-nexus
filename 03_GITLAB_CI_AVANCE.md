@@ -1,4 +1,4 @@
-# Module 03 — GitLab CI : Patterns Avancés
+# Module 03 - GitLab CI : Patterns Avancés
 
 > **Durée** : ~5h | [← Module 02](./02_GITLAB_CI_FONDAMENTAUX.md) | [→ Module 04](./04_NEXUS_ARCHITECTURE.md)
 
@@ -10,7 +10,7 @@
 2. [Includes et hiérarchie de configuration](#2-includes-et-hiérarchie-de-configuration)
 3. [Pipelines parents-enfants](#3-pipelines-parents-enfants)
 4. [Gestion avancée des secrets](#4-gestion-avancée-des-secrets)
-5. [Component Catalog — la nouvelle approche](#5-component-catalog--la-nouvelle-approche)
+5. [Component Catalog - la nouvelle approche](#5-component-catalog--la-nouvelle-approche)
 6. [Patterns monorepo](#6-patterns-monorepo)
 7. [Optimisations avancées](#7-optimisations-avancées)
 
@@ -18,7 +18,7 @@
 
 ## 1. Templates et réutilisabilité
 
-### 1.1 `extends` — Héritage de configuration
+### 1.1 `extends` - Héritage de configuration
 
 ```yaml
 # Définir un template (préfixe . = caché, non exécuté)
@@ -38,7 +38,7 @@ test:unit:
   script:
     - pytest tests/unit/
 
-# Héritage avec override — les valeurs sont fusionnées (deep merge)
+# Héritage avec override - les valeurs sont fusionnées (deep merge)
 test:integration:
   extends: .job:base
   stage: test
@@ -53,7 +53,7 @@ test:integration:
   tags: [docker, linux, integration]
 ```
 
-### 1.2 YAML Anchors — Réutilisation dans le même fichier
+### 1.2 YAML Anchors - Réutilisation dans le même fichier
 
 ```yaml
 # Définition d'un anchor
@@ -340,7 +340,7 @@ job:with:vault:
     - python -c "import os; print(os.environ['DB_PASSWORD'][:3] + '***')"
 ```
 
-### 4.2 OIDC / JWT — Authentification sans secret statique
+### 4.2 OIDC / JWT - Authentification sans secret statique
 
 ```yaml
 # GitLab peut générer des JWT tokens pour s'authentifier
@@ -386,7 +386,7 @@ deploy:k8s:
 
 ---
 
-## 5. Component Catalog — la nouvelle approche
+## 5. Component Catalog - la nouvelle approche
 
 ### 5.1 GitLab CI/CD Components (GitLab 16.x+)
 
@@ -574,7 +574,7 @@ print(yaml.dump(pipeline))
 ### 7.1 Réduction du temps de pipeline
 
 ```yaml
-# ── Fail fast — lancer le lint en premier ─────────────────────
+# ── Fail fast - lancer le lint en premier ─────────────────────
 lint:
   stage: .pre           # Toujours en premier
   script: flake8 src/
@@ -684,4 +684,4 @@ test:
 
 ---
 
-[← Module 02](./02_GITLAB_CI_FONDAMENTAUX.md) | [→ Module 04 — Nexus Architecture](./04_NEXUS_ARCHITECTURE.md)
+[← Module 02](./02_GITLAB_CI_FONDAMENTAUX.md) | [→ Module 04 - Nexus Architecture](./04_NEXUS_ARCHITECTURE.md)

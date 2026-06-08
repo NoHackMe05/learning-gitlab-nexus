@@ -1,4 +1,4 @@
-# Module 04 — Nexus Repository Manager : Architecture
+# Module 04 - Nexus Repository Manager : Architecture
 
 > **Durée** : ~3h | [← Module 03](./03_GITLAB_CI_AVANCE.md) | [→ Module 05](./05_NEXUS_INTEGRATION.md)
 
@@ -176,7 +176,7 @@ server {
 }
 ```
 
-### 2.3 Politique de cleanup — Indispensable en production
+### 2.3 Politique de cleanup - Indispensable en production
 
 ```
 Sans cleanup policy, Nexus grossit indéfiniment !
@@ -365,7 +365,7 @@ Usage dans les pipelines :
 
 ## 5. Configuration via REST API / IaC
 
-### 5.1 API REST Nexus — Opérations essentielles
+### 5.1 API REST Nexus - Opérations essentielles
 
 ```bash
 BASE_URL="https://nexus.internal"
@@ -482,7 +482,7 @@ curl -X DELETE $AUTH \
 
 ## 6. Haute disponibilité et clustering
 
-### 6.1 Nexus Pro HA — Architecture
+### 6.1 Nexus Pro HA - Architecture
 
 ```
                     [Load Balancer]
@@ -499,7 +499,7 @@ curl -X DELETE $AUTH \
 ### 6.2 Configuration de base pour la résilience (OSS)
 
 ```properties
-# nexus.properties — configuration JVM et réseau
+# nexus.properties - configuration JVM et réseau
 
 # ── Mémoire ──────────────────────────────────────────────────────
 # -Xms et -Xmx dans bin/nexus.vmoptions
@@ -595,4 +595,4 @@ spec:
 
 ---
 
-[← Module 03](./03_GITLAB_CI_AVANCE.md) | [→ Module 05 — Nexus Intégration CI/CD](./05_NEXUS_INTEGRATION.md)
+[← Module 03](./03_GITLAB_CI_AVANCE.md) | [→ Module 05 - Nexus Intégration CI/CD](./05_NEXUS_INTEGRATION.md)

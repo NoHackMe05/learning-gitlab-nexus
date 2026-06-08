@@ -1,4 +1,4 @@
-# Module 05 — Nexus : Intégration CI/CD
+# Module 05 - Nexus : Intégration CI/CD
 
 > **Durée** : ~4h | [← Module 04](./04_NEXUS_ARCHITECTURE.md) | [→ Module 06](./06_SECURITE_DEVSECOPS.md)
 
@@ -6,17 +6,17 @@
 
 ## Sommaire
 
-1. [Python — pip et twine](#1-python--pip-et-twine)
-2. [Maven — Java/Kotlin/Scala](#2-maven--javakotlinscala)
-3. [npm — JavaScript/TypeScript](#3-npm--javascripttypescript)
-4. [Docker — Build et Push](#4-docker--build-et-push)
+1. [Python - pip et twine](#1-python--pip-et-twine)
+2. [Maven - Java/Kotlin/Scala](#2-maven--javakotlinscala)
+3. [npm - JavaScript/TypeScript](#3-npm--javascripttypescript)
+4. [Docker - Build et Push](#4-docker--build-et-push)
 5. [Helm Charts](#5-helm-charts)
 6. [Artifacts Raw (binaires génériques)](#6-artifacts-raw-binaires-génériques)
 7. [Stratégies de versioning](#7-stratégies-de-versioning)
 
 ---
 
-## 1. Python — pip et twine
+## 1. Python - pip et twine
 
 ### 1.1 Configuration pip côté runner
 
@@ -125,7 +125,7 @@ publish:pypi:
 
 ---
 
-## 2. Maven — Java/Kotlin/Scala
+## 2. Maven - Java/Kotlin/Scala
 
 ### 2.1 Configuration Maven (`settings.xml`)
 
@@ -189,7 +189,7 @@ publish:pypi:
 </settings>
 ```
 
-### 2.2 `pom.xml` — Distribution management
+### 2.2 `pom.xml` - Distribution management
 
 ```xml
 <distributionManagement>
@@ -305,7 +305,7 @@ deploy:nexus:
 
 ---
 
-## 3. npm — JavaScript/TypeScript
+## 3. npm - JavaScript/TypeScript
 
 ### 3.1 Configuration npm
 
@@ -379,7 +379,7 @@ publish:npm:
 
 ---
 
-## 4. Docker — Build et Push
+## 4. Docker - Build et Push
 
 ### 4.1 Pattern Docker complet avec Nexus
 
@@ -719,4 +719,4 @@ Pour le cache de build :
 
 ---
 
-[← Module 04](./04_NEXUS_ARCHITECTURE.md) | [→ Module 06 — Sécurité DevSecOps](./06_SECURITE_DEVSECOPS.md)
+[← Module 04](./04_NEXUS_ARCHITECTURE.md) | [→ Module 06 - Sécurité DevSecOps](./06_SECURITE_DEVSECOPS.md)

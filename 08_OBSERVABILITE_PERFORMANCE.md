@@ -1,4 +1,4 @@
-# Module 08 — Observabilité & Performance des Pipelines
+# Module 08 - Observabilité & Performance des Pipelines
 
 > **Durée** : ~3h | [← Module 07](./07_PIPELINE_PATTERNS.md) | [→ Module 09](./09_LABS_PRATIQUES.md)
 
@@ -6,7 +6,7 @@
 
 ## Sommaire
 
-1. [Métriques GitLab CI — Tableau de bord](#1-métriques-gitlab-ci--tableau-de-bord)
+1. [Métriques GitLab CI - Tableau de bord](#1-métriques-gitlab-ci--tableau-de-bord)
 2. [Prometheus + Grafana pour GitLab et Nexus](#2-prometheus--grafana-pour-gitlab-et-nexus)
 3. [Optimisation des pipelines](#3-optimisation-des-pipelines)
 4. [Monitoring Nexus en production](#4-monitoring-nexus-en-production)
@@ -14,7 +14,7 @@
 
 ---
 
-## 1. Métriques GitLab CI — Tableau de bord
+## 1. Métriques GitLab CI - Tableau de bord
 
 ### 1.1 Métriques natives GitLab (API)
 
@@ -121,7 +121,7 @@ if __name__ == "__main__":
 
 ## 2. Prometheus + Grafana pour GitLab et Nexus
 
-### 2.1 Configuration Prometheus — scrape configs
+### 2.1 Configuration Prometheus - scrape configs
 
 ```yaml
 # prometheus.yml
@@ -163,7 +163,7 @@ scrape_configs:
       - targets: ['ci-exporter:9900']
 ```
 
-### 2.2 Dashboard Grafana — Panels essentiels CI/CD
+### 2.2 Dashboard Grafana - Panels essentiels CI/CD
 
 ```json
 // Panel 1 : Durée moyenne des pipelines par branche (dernières 24h)
@@ -547,7 +547,7 @@ Service Level Indicators (SLIs) mesurables :
 ### 5.2 SLO Monitoring avec Sloth (Prometheus)
 
 ```yaml
-# sloth-slos.yaml — Génère les règles Prometheus d'error budget
+# sloth-slos.yaml - Génère les règles Prometheus d'error budget
 version: "prometheus/v1"
 service: "cicd-platform"
 slos:
@@ -592,7 +592,7 @@ slos:
           severity: warning
 ```
 
-### 5.3 Dashboard Grafana — Template JSON clé
+### 5.3 Dashboard Grafana - Template JSON clé
 
 ```json
 // Panels essentiels pour un dashboard CI/CD ops
@@ -646,4 +646,4 @@ slos:
 
 ---
 
-[← Module 07](./07_PIPELINE_PATTERNS.md) | [→ Module 09 — Labs Pratiques](./09_LABS_PRATIQUES.md)
+[← Module 07](./07_PIPELINE_PATTERNS.md) | [→ Module 09 - Labs Pratiques](./09_LABS_PRATIQUES.md)

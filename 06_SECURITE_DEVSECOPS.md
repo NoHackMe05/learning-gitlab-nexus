@@ -1,4 +1,4 @@
-# Module 06 — Sécurité & DevSecOps
+# Module 06 - Sécurité & DevSecOps
 
 > **Durée** : ~5h | [← Module 05](./05_NEXUS_INTEGRATION.md) | [→ Module 07](./07_PIPELINE_PATTERNS.md)
 
@@ -6,10 +6,10 @@
 
 ## Sommaire
 
-1. [SAST — Static Application Security Testing](#1-sast--static-application-security-testing)
-2. [SCA — Software Composition Analysis](#2-sca--software-composition-analysis)
+1. [SAST - Static Application Security Testing](#1-sast--static-application-security-testing)
+2. [SCA - Software Composition Analysis](#2-sca--software-composition-analysis)
 3. [Container Scanning](#3-container-scanning)
-4. [DAST — Dynamic Application Security Testing](#4-dast--dynamic-application-security-testing)
+4. [DAST - Dynamic Application Security Testing](#4-dast--dynamic-application-security-testing)
 5. [Secret Detection](#5-secret-detection)
 6. [IaC Scanning](#6-iac-scanning)
 7. [Compliance Framework et Security Dashboard](#7-compliance-framework-et-security-dashboard)
@@ -17,7 +17,7 @@
 
 ---
 
-## 1. SAST — Static Application Security Testing
+## 1. SAST - Static Application Security Testing
 
 ### 1.1 GitLab SAST intégré (templates)
 
@@ -49,7 +49,7 @@ variables:
     p/owasp-top-ten
 ```
 
-### 1.2 Semgrep — Configuration avancée
+### 1.2 Semgrep - Configuration avancée
 
 ```yaml
 # SAST custom avec Semgrep (plus de contrôle que le template)
@@ -118,7 +118,7 @@ rules:
 
 ---
 
-## 2. SCA — Software Composition Analysis
+## 2. SCA - Software Composition Analysis
 
 ### 2.1 GitLab Dependency Scanning
 
@@ -135,7 +135,7 @@ variables:
   DS_SEVERITY_THRESHOLD: "High"
 ```
 
-### 2.2 Trivy — SCA multiformat
+### 2.2 Trivy - SCA multiformat
 
 ```yaml
 sca:trivy:
@@ -317,7 +317,7 @@ LABEL org.opencontainers.image.source="$CI_PROJECT_URL"
 
 ---
 
-## 4. DAST — Dynamic Application Security Testing
+## 4. DAST - Dynamic Application Security Testing
 
 ### 4.1 OWASP ZAP via GitLab DAST template
 
@@ -400,7 +400,7 @@ secret_detection:
     SECRET_DETECTION_EXCLUDED_PATHS: "tests/"
 ```
 
-### 5.2 Gitleaks — Configuration avancée
+### 5.2 Gitleaks - Configuration avancée
 
 ```yaml
 detect:secrets:
@@ -477,7 +477,7 @@ kics-iac-sast:
     SAST_SEVERITY_THRESHOLD: "Medium"
 ```
 
-### 6.2 Checkov — Scan Terraform et K8s
+### 6.2 Checkov - Scan Terraform et K8s
 
 ```yaml
 scan:iac:checkov:
@@ -677,4 +677,4 @@ Politiques recommandées :
 
 ---
 
-[← Module 05](./05_NEXUS_INTEGRATION.md) | [→ Module 07 — Pipeline Patterns](./07_PIPELINE_PATTERNS.md)
+[← Module 05](./05_NEXUS_INTEGRATION.md) | [→ Module 07 - Pipeline Patterns](./07_PIPELINE_PATTERNS.md)

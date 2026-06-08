@@ -1,4 +1,4 @@
-# Formation CI/CD Avancée — GitLab CI + Nexus Repository Manager
+# Formation CI/CD Avancée - GitLab CI + Nexus Repository Manager
 
 > **Public cible** : Ingénieurs DevSecOps, DevOps, Backend Engineers ayant une expérience solide en développement et une première exposition aux pipelines CI/CD.
 > **Prérequis** : Git maîtrisé, Docker & Kubernetes connus, Linux aisé, notions réseau de base.
@@ -11,10 +11,10 @@
 | # | Module | Thèmes clés | Durée est. |
 |---|--------|-------------|------------|
 | [01](./01_GITLAB_ARCHITECTURE.md) | **Architecture GitLab & Runners** | GitLab topology, Runner types, executor strategies, registration, autoscaling | 4h |
-| [02](./02_GITLAB_CI_FONDAMENTAUX.md) | **GitLab CI — Fondamentaux avancés** | `.gitlab-ci.yml` deep dive, stages, jobs, rules, needs, DAG, cache, artifacts | 5h |
-| [03](./03_GITLAB_CI_AVANCE.md) | **GitLab CI — Patterns avancés** | Templates, includes, extends, matrices, DAST/SAST intégré, secrets management | 5h |
-| [04](./04_NEXUS_ARCHITECTURE.md) | **Nexus Repository Manager — Architecture** | Types de repos, proxying, groupes, formats, Blob Store, HA | 3h |
-| [05](./05_NEXUS_INTEGRATION.md) | **Nexus — Intégration CI/CD** | Maven, pip, npm, Docker, Helm dans les pipelines, cleanup policies | 4h |
+| [02](./02_GITLAB_CI_FONDAMENTAUX.md) | **GitLab CI - Fondamentaux avancés** | `.gitlab-ci.yml` deep dive, stages, jobs, rules, needs, DAG, cache, artifacts | 5h |
+| [03](./03_GITLAB_CI_AVANCE.md) | **GitLab CI - Patterns avancés** | Templates, includes, extends, matrices, DAST/SAST intégré, secrets management | 5h |
+| [04](./04_NEXUS_ARCHITECTURE.md) | **Nexus Repository Manager - Architecture** | Types de repos, proxying, groupes, formats, Blob Store, HA | 3h |
+| [05](./05_NEXUS_INTEGRATION.md) | **Nexus - Intégration CI/CD** | Maven, pip, npm, Docker, Helm dans les pipelines, cleanup policies | 4h |
 | [06](./06_SECURITE_DEVSECOPS.md) | **Sécurité & DevSecOps** | SAST, DAST, SCA, container scanning, IaC scanning, secret detection, compliance | 5h |
 | [07](./07_PIPELINE_PATTERNS.md) | **Pipeline Patterns & Architecture** | Multi-project, parent-child, environments, deployments, rollback, GitOps | 5h |
 | [08](./08_OBSERVABILITE_PERFORMANCE.md) | **Observabilité & Performance** | Métriques pipelines, optimisation, monitoring GitLab, Nexus metrics, tracing | 3h |
@@ -50,13 +50,13 @@ Vault (secrets)          Prometheus + Grafana (observabilité)
 
 ## 📐 Conventions utilisées dans ce cours
 
-- `📋 Concept` — Notion théorique à retenir
-- `⚙️ Config` — Extrait de configuration commenté
-- `🔬 Lab` — Exercice pratique
-- `⚠️ Piège` — Erreur fréquente à éviter
-- `🔒 Sécurité` — Point de vigilance sécurité
-- `🚀 Perf` — Optimisation performance
-- `💡 Tip` — Bonne pratique ou astuce
+- `📋 Concept` - Notion théorique à retenir
+- `⚙️ Config` - Extrait de configuration commenté
+- `🔬 Lab` - Exercice pratique
+- `⚠️ Piège` - Erreur fréquente à éviter
+- `🔒 Sécurité` - Point de vigilance sécurité
+- `🚀 Perf` - Optimisation performance
+- `💡 Tip` - Bonne pratique ou astuce
 
 ---
 

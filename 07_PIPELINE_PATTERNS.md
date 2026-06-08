@@ -1,4 +1,4 @@
-# Module 07 — Pipeline Patterns & Architecture
+# Module 07 - Pipeline Patterns & Architecture
 
 > **Durée** : ~5h | [← Module 06](./06_SECURITE_DEVSECOPS.md) | [→ Module 08](./08_OBSERVABILITE_PERFORMANCE.md)
 
@@ -232,7 +232,7 @@ cleanup:canary:
                     └────────────────────────┘
 ```
 
-### 2.2 Pipeline GitOps — Mise à jour automatique des manifests
+### 2.2 Pipeline GitOps - Mise à jour automatique des manifests
 
 ```yaml
 # Job qui met à jour le dépôt GitOps après un build réussi
@@ -668,4 +668,4 @@ feature-flags:sync:
 
 ---
 
-[← Module 06](./06_SECURITE_DEVSECOPS.md) | [→ Module 08 — Observabilité & Performance](./08_OBSERVABILITE_PERFORMANCE.md)
+[← Module 06](./06_SECURITE_DEVSECOPS.md) | [→ Module 08 - Observabilité & Performance](./08_OBSERVABILITE_PERFORMANCE.md)

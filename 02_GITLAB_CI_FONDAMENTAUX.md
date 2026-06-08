@@ -1,4 +1,4 @@
-# Module 02 — GitLab CI : Fondamentaux Avancés
+# Module 02 - GitLab CI : Fondamentaux Avancés
 
 > **Durée** : ~5h | [← Module 01](./01_GITLAB_ARCHITECTURE.md) | [→ Module 03](./03_GITLAB_CI_AVANCE.md)
 
@@ -8,9 +8,9 @@
 
 1. [Anatomie du `.gitlab-ci.yml`](#1-anatomie-du-gitlab-ciyml)
 2. [Stages, Jobs, et DAG](#2-stages-jobs-et-dag)
-3. [Rules — Contrôle fin d'exécution](#3-rules--contrôle-fin-dexécution)
+3. [Rules - Contrôle fin d'exécution](#3-rules--contrôle-fin-dexécution)
 4. [Cache et Artifacts](#4-cache-et-artifacts)
-5. [Variables — Hiérarchie et gestion](#5-variables--hiérarchie-et-gestion)
+5. [Variables - Hiérarchie et gestion](#5-variables--hiérarchie-et-gestion)
 6. [Services et environnements de test](#6-services-et-environnements-de-test)
 7. [Pipelines for Merge Requests](#7-pipelines-for-merge-requests)
 
@@ -22,7 +22,7 @@
 
 ```yaml
 # ─────────────────────────────────────────────────────────────────
-# SECTION GLOBALE — s'applique à tous les jobs sauf override
+# SECTION GLOBALE - s'applique à tous les jobs sauf override
 # ─────────────────────────────────────────────────────────────────
 
 # Image Docker par défaut
@@ -68,10 +68,10 @@ variables:
   FF_USE_NEW_BASH_EVAL_STRATEGY: "true"
 
 # ─────────────────────────────────────────────────────────────────
-# WORKFLOW — Contrôle quand un pipeline est créé
+# WORKFLOW - Contrôle quand un pipeline est créé
 # ─────────────────────────────────────────────────────────────────
 workflow:
-  name: "$CI_COMMIT_REF_NAME — $CI_PIPELINE_SOURCE"
+  name: "$CI_COMMIT_REF_NAME - $CI_PIPELINE_SOURCE"
   rules:
     # Pipeline sur push de branche (sauf tags)
     - if: $CI_COMMIT_BRANCH && $CI_PIPELINE_SOURCE == "push"
@@ -195,7 +195,7 @@ Résultat avec DAG :
   tous les builds.
 ```
 
-⚠️ **Piège DAG** — Avec `needs:`, un job peut s'exécuter dans un stage *antérieur* si ses dépendances sont satisfaites. Cela peut surprendre.
+⚠️ **Piège DAG** - Avec `needs:`, un job peut s'exécuter dans un stage *antérieur* si ses dépendances sont satisfaites. Cela peut surprendre.
 
 ### 2.2 Parallel et Matrix
 
@@ -206,7 +206,7 @@ test:unit:
   script:
     - pytest tests/ --splits $CI_NODE_TOTAL --group $CI_NODE_INDEX
 
-# ── Matrix — combinatoire ──────────────────────────────────────
+# ── Matrix - combinatoire ──────────────────────────────────────
 test:compatibility:
   parallel:
     matrix:
@@ -245,7 +245,7 @@ trigger:downstream:
 
 ---
 
-## 3. Rules — Contrôle fin d'exécution
+## 3. Rules - Contrôle fin d'exécution
 
 ### 3.1 Rules vs only/except
 
@@ -351,7 +351,7 @@ Clé de cache pour l'invalidation    TTL configurable
 Ex: node_modules, .venv, .m2        Ex: binaires, rapports, images
 ```
 
-### 4.2 Cache — Configuration avancée
+### 4.2 Cache - Configuration avancée
 
 ```yaml
 # ── Cache Python partagé ────────────────────────────────────────
@@ -396,7 +396,7 @@ build:java:
     policy: pull-push
 ```
 
-### 4.3 Artifacts — Configuration avancée
+### 4.3 Artifacts - Configuration avancée
 
 ```yaml
 build:app:
@@ -443,7 +443,7 @@ deploy:
     - ls dist/               # Les fichiers sont disponibles
 ```
 
-### 4.4 Artifacts de rapport — Intégration UI GitLab
+### 4.4 Artifacts de rapport - Intégration UI GitLab
 
 ```yaml
 # Tests avec rapport JUnit → affichage dans l'UI de la MR
@@ -464,7 +464,7 @@ pytest:
 
 ---
 
-## 5. Variables — Hiérarchie et gestion
+## 5. Variables - Hiérarchie et gestion
 
 ### 5.1 Ordre de priorité (du plus prioritaire au moins prioritaire)
 
@@ -534,7 +534,7 @@ Protection des variables :
    Elle doit faire au moins 8 caractères et ne pas contenir de newlines
 ```
 
-🔒 **Bonne pratique** — Stocker les secrets réels dans Vault ou un gestionnaire de secrets externe et les injecter dynamiquement :
+🔒 **Bonne pratique** - Stocker les secrets réels dans Vault ou un gestionnaire de secrets externe et les injecter dynamiquement :
 
 ```yaml
 secrets:
@@ -590,7 +590,7 @@ test:integration:
     - pytest tests/integration/ -v
 ```
 
-### 6.2 Environments — Tracking des déploiements
+### 6.2 Environments - Tracking des déploiements
 
 ```yaml
 deploy:staging:
@@ -697,4 +697,4 @@ Merge Trains :
 
 ---
 
-[← Module 01](./01_GITLAB_ARCHITECTURE.md) | [→ Module 03 — Patterns Avancés](./03_GITLAB_CI_AVANCE.md)
+[← Module 01](./01_GITLAB_ARCHITECTURE.md) | [→ Module 03 - Patterns Avancés](./03_GITLAB_CI_AVANCE.md)

@@ -1,4 +1,4 @@
-# Module 09 — Labs Pratiques
+# Module 09 - Labs Pratiques
 
 > **Durée** : ~6h | [← Module 08](./08_OBSERVABILITE_PERFORMANCE.md) | [← Index](./00_INDEX.md)
 
@@ -8,7 +8,7 @@
 
 | Lab | Titre | Durée | Prérequis |
 |-----|-------|-------|-----------|
-| [Lab 01](#lab-01--installation-et-configuration-dun-runner-docker) | Runner Docker — Installation & Config | 45 min | Docker, accès GitLab |
+| [Lab 01](#lab-01--installation-et-configuration-dun-runner-docker) | Runner Docker - Installation & Config | 45 min | Docker, accès GitLab |
 | [Lab 02](#lab-02--pipeline-ci-python-complet) | Pipeline CI Python complet | 60 min | Lab 01 |
 | [Lab 03](#lab-03--intégration-nexus--pypi--docker) | Intégration Nexus (PyPI + Docker) | 60 min | Nexus déployé, Lab 02 |
 | [Lab 04](#lab-04--sécurité--sast--secret-detection--container-scan) | DevSecOps pipeline | 45 min | Lab 03 |
@@ -19,7 +19,7 @@
 
 ---
 
-## Lab 01 — Installation et configuration d'un Runner Docker
+## Lab 01 - Installation et configuration d'un Runner Docker
 
 ### Objectifs
 - Installer GitLab Runner sur une VM ou un conteneur
@@ -28,7 +28,7 @@
 
 ### Étapes
 
-**Étape 1 — Installer GitLab Runner**
+**Étape 1 - Installer GitLab Runner**
 
 ```bash
 # Sur Ubuntu/Debian
@@ -47,7 +47,7 @@ docker run -d \
   gitlab/gitlab-runner:latest
 ```
 
-**Étape 2 — Enregistrer le Runner**
+**Étape 2 - Enregistrer le Runner**
 
 ```bash
 # Dans l'UI GitLab :
@@ -68,7 +68,7 @@ sudo gitlab-runner register \
   --run-untagged=false
 ```
 
-**Étape 3 — Vérifier la configuration**
+**Étape 3 - Vérifier la configuration**
 
 ```bash
 cat /etc/gitlab-runner/config.toml
@@ -81,12 +81,12 @@ sudo gitlab-runner restart
 sudo gitlab-runner status
 ```
 
-**Étape 4 — Premier pipeline de test**
+**Étape 4 - Premier pipeline de test**
 
 Créer le fichier `.gitlab-ci.yml` dans un projet de test :
 
 ```yaml
-# .gitlab-ci.yml — Pipeline de vérification Lab 01
+# .gitlab-ci.yml - Pipeline de vérification Lab 01
 stages:
   - verify
 
@@ -109,7 +109,7 @@ verify:runner:
 
 ---
 
-## Lab 02 — Pipeline CI Python complet
+## Lab 02 - Pipeline CI Python complet
 
 ### Objectifs
 - Créer un pipeline multi-stages pour une application Python FastAPI
@@ -188,7 +188,7 @@ mypy==1.8.0
 ### Pipeline à implémenter
 
 ```yaml
-# .gitlab-ci.yml — À COMPLÉTER pendant le lab
+# .gitlab-ci.yml - À COMPLÉTER pendant le lab
 
 stages:
   - .pre
@@ -217,7 +217,7 @@ variables:
 ### Solution complète
 
 ```yaml
-# .gitlab-ci.yml — SOLUTION Lab 02
+# .gitlab-ci.yml - SOLUTION Lab 02
 
 stages:
   - .pre
@@ -334,7 +334,7 @@ build:package:
 
 ---
 
-## Lab 03 — Intégration Nexus : PyPI + Docker
+## Lab 03 - Intégration Nexus : PyPI + Docker
 
 ### Objectifs
 - Publier un package Python vers Nexus PyPI hosted
@@ -346,7 +346,7 @@ build:package:
 - Repos créés : `pypi-hosted`, `pypi-group`, `docker-hosted-releases`
 - Variables CI configurées : `NEXUS_URL`, `NEXUS_USER`, `NEXUS_PASSWORD`, `NEXUS_WRITER_USER`, `NEXUS_WRITER_PASSWORD`
 
-### Étape 1 — Dockerfile
+### Étape 1 - Dockerfile
 
 ```dockerfile
 # Dockerfile
@@ -372,7 +372,7 @@ HEALTHCHECK CMD python -c "import urllib.request; urllib.request.urlopen('http:/
 CMD ["python", "-m", "uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000"]
 ```
 
-### Étape 2 — Pipeline étendu
+### Étape 2 - Pipeline étendu
 
 ```yaml
 # Ajouter à votre .gitlab-ci.yml du Lab 02
@@ -428,27 +428,27 @@ build:docker:
 
 ---
 
-## Lab 04 — Sécurité : SAST + Secret Detection + Container Scan
+## Lab 04 - Sécurité : SAST + Secret Detection + Container Scan
 
 ### Objectifs
 - Intégrer les templates de sécurité GitLab
 - Configurer Gitleaks pour la détection de secrets
 - Tester le blocage sur une vulnérabilité délibérée
 
-### Étape 1 — Ajouter intentionnellement un "secret"
+### Étape 1 - Ajouter intentionnellement un "secret"
 
 ```python
-# src/config.py — À NE PAS FAIRE EN PROD, c'est pour le lab !
+# src/config.py - À NE PAS FAIRE EN PROD, c'est pour le lab !
 # Ce fichier va déclencher Gitleaks
 
 API_KEY = "sk-prod-a1b2c3d4e5f6789012345678901234567890abcd"  # noqa
 DATABASE_URL = "postgresql://admin:SuperSecret123@db.prod:5432/myapp"
 ```
 
-### Étape 2 — Pipeline sécurisé
+### Étape 2 - Pipeline sécurisé
 
 ```yaml
-# .gitlab-ci.yml — Ajouts sécurité
+# .gitlab-ci.yml - Ajouts sécurité
 
 include:
   - template: Security/SAST.gitlab-ci.yml
@@ -494,14 +494,14 @@ scan:container:
 
 ---
 
-## Lab 05 — Templates réutilisables et Includes
+## Lab 05 - Templates réutilisables et Includes
 
 ### Objectifs
 - Créer un dépôt de templates CI partagés
 - Utiliser `extends` et `include` entre projets
 - Implémenter un Component simple
 
-### Étape 1 — Créer le dépôt de templates
+### Étape 1 - Créer le dépôt de templates
 
 ```
 Créer : devops/ci-templates (nouveau projet GitLab)
@@ -552,7 +552,7 @@ Structure :
     expire_in: 7 days
 ```
 
-### Étape 2 — Consommer le template dans un projet
+### Étape 2 - Consommer le template dans un projet
 
 ```yaml
 # .gitlab-ci.yml du projet applicatif
@@ -583,7 +583,7 @@ build:image:
 
 ---
 
-## Lab 06 — Pipeline multi-projets et GitOps
+## Lab 06 - Pipeline multi-projets et GitOps
 
 ### Objectifs
 - Déclencher un pipeline downstream depuis un pipeline upstream
@@ -662,7 +662,7 @@ update:staging-values:
 
 ---
 
-## Lab 07 — Déploiement Blue/Green et Rollback
+## Lab 07 - Déploiement Blue/Green et Rollback
 
 ### Objectifs
 - Implémenter un déploiement Blue/Green sur Kubernetes
@@ -737,7 +737,7 @@ spec:
 
 ---
 
-## Lab 08 — Pipeline Production-Grade Complet
+## Lab 08 - Pipeline Production-Grade Complet
 
 ### Objectifs
 - Assembler tous les concepts vus dans la formation
@@ -765,11 +765,11 @@ Le pipeline doit :
 ✅ Rapports de tests visibles dans GitLab UI
 ```
 
-### Pipeline final — Squelette à compléter
+### Pipeline final - Squelette à compléter
 
 ```yaml
-# .gitlab-ci.yml — Pipeline Production-Grade
-# LAB 08 — À COMPLÉTER
+# .gitlab-ci.yml - Pipeline Production-Grade
+# LAB 08 - À COMPLÉTER
 
 include:
   - project: 'devops/ci-templates'
@@ -829,7 +829,7 @@ Qualité du pipeline :
 
 ---
 
-## Troubleshooting Guide — Problèmes courants des labs
+## Troubleshooting Guide - Problèmes courants des labs
 
 ```
 ❌ "Job is stuck in pending"

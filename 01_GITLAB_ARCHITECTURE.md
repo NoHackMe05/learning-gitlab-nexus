@@ -1,4 +1,4 @@
-# Module 01 — Architecture GitLab & Runners
+# Module 01 - Architecture GitLab & Runners
 
 > **Durée** : ~4h | **Niveau** : Avancé | [← Index](./00_INDEX.md) | [→ Module 02](./02_GITLAB_CI_FONDAMENTAUX.md)
 
@@ -7,7 +7,7 @@
 ## Sommaire
 
 1. [Topologie GitLab en production](#1-topologie-gitlab-en-production)
-2. [Les Runners — Types et Executors](#2-les-runners--types-et-executors)
+2. [Les Runners - Types et Executors](#2-les-runners--types-et-executors)
 3. [Registration et configuration avancée](#3-registration-et-configuration-avancée)
 4. [Autoscaling des Runners](#4-autoscaling-des-runners)
 5. [Sécurisation de l'infrastructure Runner](#5-sécurisation-de-linfrastructure-runner)
@@ -19,7 +19,7 @@
 
 ### 1.1 Architecture Reference (GitLab HA)
 
-📋 **Concept** — GitLab est une application monolithique modulaire. En production sérieuse, les composants sont séparés :
+📋 **Concept** - GitLab est une application monolithique modulaire. En production sérieuse, les composants sont séparés :
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
@@ -95,7 +95,7 @@ gitlab_rails['object_store']['connection'] = {
 gitlab_rails['artifacts_object_store_enabled'] = true
 gitlab_rails['artifacts_object_store_bucket'] = 'gitlab-artifacts'
 
-## ── Sidekiq — queues dédiées CI ────────────────────────────────────
+## ── Sidekiq - queues dédiées CI ────────────────────────────────────
 sidekiq['routing_rules'] = [
   ["feature_category=continuous_integration", "pipeline_processing:2"],
   ["*", "default:1"]
@@ -111,11 +111,11 @@ gitlab_rails['rate_limit_requests_per_period'] = 100
 gitlab_rails['rate_limit_period'] = 60
 ```
 
-⚠️ **Piège** — Ne jamais stocker les artifacts sur disque local sur un cluster multi-nodes : ils doivent obligatoirement être sur Object Storage pour être accessibles depuis n'importe quel node Puma/Sidekiq.
+⚠️ **Piège** - Ne jamais stocker les artifacts sur disque local sur un cluster multi-nodes : ils doivent obligatoirement être sur Object Storage pour être accessibles depuis n'importe quel node Puma/Sidekiq.
 
 ---
 
-## 2. Les Runners — Types et Executors
+## 2. Les Runners - Types et Executors
 
 ### 2.1 Portée des Runners
 
@@ -134,9 +134,9 @@ gitlab_rails['rate_limit_period'] = 60
 └─────────────────────────────────────────────────────┘
 ```
 
-💡 **Tip** — Pour les projets sensibles (secrets de prod, certificats), utilisez des **Project Runners dédiés** avec `protected` + `locked` pour éviter qu'un fork ou un autre projet y accède.
+💡 **Tip** - Pour les projets sensibles (secrets de prod, certificats), utilisez des **Project Runners dédiés** avec `protected` + `locked` pour éviter qu'un fork ou un autre projet y accède.
 
-### 2.2 Types d'Executors — Comparatif complet
+### 2.2 Types d'Executors - Comparatif complet
 
 | Executor | Isolation | Perf | Cas d'usage | Limites |
 |----------|-----------|------|-------------|---------|
@@ -148,7 +148,7 @@ gitlab_rails['rate_limit_period'] = 60
 | **custom** | Variable | Variable | Cas exotiques (VMs, LXC, etc.) | À implémenter soi-même |
 | **instance** | ✅✅ Forte | ⚡⚡⚡ | Nesting, pas de DinD | GitLab Runner 15.11+ |
 
-### 2.3 Executor Docker — Configurations critiques
+### 2.3 Executor Docker - Configurations critiques
 
 ```toml
 # /etc/gitlab-runner/config.toml
@@ -213,15 +213,15 @@ shutdown_timeout = 30    # Attente d'arrêt propre
       Insecure = false
 ```
 
-🔒 **Sécurité — Docker socket vs DinD**
+🔒 **Sécurité - Docker socket vs DinD**
 
 ```
-Option 1 — Docker socket mount (pratique, dangereux)
+Option 1 - Docker socket mount (pratique, dangereux)
   volumes = ["/var/run/docker.sock:/var/run/docker.sock"]
   → Le job peut faire TOUT ce que Docker peut faire sur le host
-  → Équivalent root sur le host — À ÉVITER en production
+  → Équivalent root sur le host - À ÉVITER en production
 
-Option 2 — Docker-in-Docker (DinD)
+Option 2 - Docker-in-Docker (DinD)
   services: ["docker:24-dind"]
   variables:
     DOCKER_HOST: tcp://docker:2376
@@ -229,13 +229,13 @@ Option 2 — Docker-in-Docker (DinD)
   → Container isolé, mais nécessite privileged: true
   → Acceptable si le runner host est lui-même isolé (VM dédiée)
 
-Option 3 — Kaniko (recommandé en K8s)
+Option 3 - Kaniko (recommandé en K8s)
   image: gcr.io/kaniko-project/executor:debug
   → Build d'images sans Docker, sans root, sans socket
   → Idéal pour environnements Kubernetes
 ```
 
-### 2.4 Executor Kubernetes — Configuration
+### 2.4 Executor Kubernetes - Configuration
 
 ```toml
 [[runners]]
@@ -290,10 +290,10 @@ Option 3 — Kaniko (recommandé en K8s)
 Depuis GitLab 16.0, les runner tokens sont **rotatables** et le workflow a changé :
 
 ```bash
-# Étape 1 — Créer le runner dans l'UI GitLab (Settings > CI/CD > Runners > New runner)
+# Étape 1 - Créer le runner dans l'UI GitLab (Settings > CI/CD > Runners > New runner)
 # Copier le token "runner authentication token" (glrt-xxxx)
 
-# Étape 2 — Registration
+# Étape 2 - Registration
 gitlab-runner register \
   --non-interactive \
   --url "https://gitlab.example.com" \
@@ -306,12 +306,12 @@ gitlab-runner register \
   --locked false \
   --access-level "not_protected"
 
-# Étape 3 — Vérifier
+# Étape 3 - Vérifier
 gitlab-runner verify --delete  # Supprime les runners qui ne répondent plus
 gitlab-runner list
 ```
 
-### 3.2 Tags — Stratégie de tagging
+### 3.2 Tags - Stratégie de tagging
 
 Les tags sont le mécanisme de **routing** entre jobs et runners. Concevoir une taxonomie claire :
 
@@ -402,7 +402,7 @@ Remplace Docker Machine (déprécié). Utilise **Fleeting** pour gérer des pool
     scale_factor_limit = 0
 ```
 
-### 4.2 Autoscaling Kubernetes — Keda / Cluster Autoscaler
+### 4.2 Autoscaling Kubernetes - Keda / Cluster Autoscaler
 
 Pour K8s, l'autoscaling se fait au niveau de l'infra Kubernetes :
 
@@ -453,7 +453,7 @@ Architecture sécurisée recommandée :
 ```
 
 ```bash
-# iptables pour runner Docker — bloquer l'accès au metadata AWS depuis les jobs
+# iptables pour runner Docker - bloquer l'accès au metadata AWS depuis les jobs
 iptables -I DOCKER-USER -d 169.254.169.254 -j DROP
 
 # Autoriser seulement Nexus et GitLab depuis les containers
@@ -461,18 +461,18 @@ iptables -I DOCKER-USER -d 192.168.1.0/24 -j ACCEPT
 iptables -I DOCKER-USER -j DROP
 ```
 
-### 5.2 Secrets dans les Runners — Bonnes pratiques
+### 5.2 Secrets dans les Runners - Bonnes pratiques
 
 🔒 **Ne jamais** mettre de secrets dans `config.toml` en clair. Utiliser :
 
 ```bash
-# Option 1 — Variables CI/CD GitLab (chiffrées au repos)
+# Option 1 - Variables CI/CD GitLab (chiffrées au repos)
 # UI : Settings > CI/CD > Variables > Add variable (masked + protected)
 
-# Option 2 — Vault Agent Injector (pour K8s runners)
+# Option 2 - Vault Agent Injector (pour K8s runners)
 # Le pod runner récupère les secrets via annotations Vault
 
-# Option 3 — Fichier .env chiffré (sops + age)
+# Option 3 - Fichier .env chiffré (sops + age)
 sops --decrypt secrets.enc.env > /tmp/runner-secrets.env
 source /tmp/runner-secrets.env
 ```
@@ -517,11 +517,11 @@ scrape_configs:
 ```
 
 Métriques clés :
-- `gitlab_runner_jobs{state="running"}` — Jobs en cours
-- `gitlab_runner_jobs{state="failed"}` — Jobs échoués
-- `gitlab_runner_job_duration_seconds` — Durée des jobs (histogram)
-- `gitlab_runner_errors_total` — Erreurs runner
-- `gitlab_runner_version_info` — Version du runner
+- `gitlab_runner_jobs{state="running"}` - Jobs en cours
+- `gitlab_runner_jobs{state="failed"}` - Jobs échoués
+- `gitlab_runner_job_duration_seconds` - Durée des jobs (histogram)
+- `gitlab_runner_errors_total` - Erreurs runner
+- `gitlab_runner_version_info` - Version du runner
 
 ### 6.2 Troubleshooting courant
 
@@ -547,7 +547,7 @@ docker ps -a | grep gitlab-runner | awk '{print $1}' | xargs docker rm -f
 gitlab-runner --log-level debug run --single-run
 ```
 
-⚠️ **Piège fréquent — "Job is stuck"**
+⚠️ **Piège fréquent - "Job is stuck"**
 
 ```
 Causes communes :
@@ -571,11 +571,11 @@ Vérification rapide :
 | Architecture GitLab | Composants séparés en prod, Object Storage obligatoire pour multi-node |
 | Runner scope | Instance > Group > Project, toujours préférer le scope le plus restreint pour les secrets |
 | Executor choice | K8s pour cloud-native, Docker pour isolation, Shell uniquement pour déploiements contrôlés |
-| Docker socket | Équivalent root — préférer Kaniko ou DinD avec VM dédiée |
+| Docker socket | Équivalent root - préférer Kaniko ou DinD avec VM dédiée |
 | Autoscaling | Docker Autoscaler (Fleeting) remplace Docker Machine, KEDA pour K8s |
 | Tags | Taxonomie `env-executor-arch-spéc`, toujours taguer les runners sensibles |
 | Sécurité | Isoler réseau, pas de secrets en clair, iptables pour bloquer metadata cloud |
 
 ---
 
-[← Index](./00_INDEX.md) | [→ Module 02 — GitLab CI Fondamentaux](./02_GITLAB_CI_FONDAMENTAUX.md)
+[← Index](./00_INDEX.md) | [→ Module 02 - GitLab CI Fondamentaux](./02_GITLAB_CI_FONDAMENTAUX.md)
